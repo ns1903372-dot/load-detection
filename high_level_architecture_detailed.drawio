@@ -1,0 +1,88 @@
+<mxfile host="app.diagrams.net" modified="2026-04-06T00:00:00.000Z" agent="Codex" version="24.7.17">
+  <diagram id="cognitive-load-architecture-detailed" name="Detailed Architecture">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Cognitive Load Detection System - Detailed High Level Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=24;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="20" width="900" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="input" value="1. Data Acquisition&#xa;- EEG raw recordings&#xa;- EDF / MAT / CSV files&#xa;- Subject/session-wise input" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=15;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="160" width="220" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="conversion" value="2. Data Conversion&#xa;- Convert raw signals to tabular format&#xa;- Channel-wise EEG extraction&#xa;- Store as CSV / dataframe" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=15;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="300" y="160" width="240" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="preprocess" value="3. Signal Preprocessing&#xa;- Band-pass filtering&#xa;- ICA artifact removal&#xa;- Noise reduction / normalization" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=15;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="580" y="160" width="250" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="segment" value="4. Segmentation&#xa;- Fixed-size EEG windows&#xa;- Overlapping / non-overlapping windows&#xa;- Window label mapping" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=15;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="870" y="160" width="240" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="feature" value="5. Feature Extraction&#xa;- DWT decomposition&#xa;- Approximation and detail coefficients&#xa;- Statistical + Hjorth features" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=15;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="160" width="260" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dataset" value="6. Dataset Preparation&#xa;- Merge subject features&#xa;- Build labeled dataset&#xa;- Train / test split&#xa;- Binary class selection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=15;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="500" y="360" width="270" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="training" value="7. Model Training&#xa;- ANN model&#xa;- 1D CNN model&#xa;- VGG-style CNN&#xa;- Possible ResNet extension" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d4e1f5;strokeColor=#6c8ebf;fontSize=15;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="820" y="360" width="250" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="evaluation" value="8. Evaluation and Visualization&#xa;- Accuracy / Loss curves&#xa;- AUC / ROC&#xa;- Precision / Recall / F1&#xa;- Confusion matrix" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=15;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="360" width="280" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="prediction" value="9. Prediction Output&#xa;- Low / High cognitive load class&#xa;- Model-based decision for new EEG input" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=15;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="760" y="590" width="290" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="fr1" value="Key Functional Flow" style="swimlane;rounded=1;html=1;fillColor=#ffffff;strokeColor=#999999;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="760" width="1320" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="flow1" value="Input EEG" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="fr1">
+          <mxGeometry x="20" y="35" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="flow2" value="Preprocess" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="fr1">
+          <mxGeometry x="180" y="35" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="flow3" value="Windowing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="fr1">
+          <mxGeometry x="340" y="35" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="flow4" value="DWT Features" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="fr1">
+          <mxGeometry x="500" y="35" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="flow5" value="Dataset" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="fr1">
+          <mxGeometry x="660" y="35" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="flow6" value="Train Models" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d4e1f5;strokeColor=#6c8ebf;" vertex="1" parent="fr1">
+          <mxGeometry x="820" y="35" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="flow7" value="Evaluate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="fr1">
+          <mxGeometry x="980" y="35" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="flow8" value="Predict Load" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="fr1">
+          <mxGeometry x="1140" y="35" width="120" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="input" target="conversion"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="conversion" target="preprocess"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="preprocess" target="segment"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="segment" target="feature"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="feature" target="dataset"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="dataset" target="training"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="training" target="evaluation"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e8" value="Trained model" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="training" target="prediction"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e9" value="Performance metrics" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeWidth=2;dashed=1;" edge="1" parent="1" source="evaluation" target="prediction"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
