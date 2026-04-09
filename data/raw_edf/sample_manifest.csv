@@ -1,0 +1,5 @@
+file_name,subject_id,session,task,format,notes
+Subject01_1.edf,Subject01,1,baseline,edf,Sample manifest entry showing expected raw EEG source naming.
+Subject01_2.edf,Subject01,2,mental_arithmetic,edf,Sample manifest entry for a workload session.
+Subject10_2.edf,Subject10,2,mental_arithmetic,edf,Use real EDF recordings here when available.
+
