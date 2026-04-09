@@ -1,7 +1,7 @@
 
 ---
 title: Cognitive Load Detection Lab
-emoji: brain
+emoji: 🧠
 colorFrom: blue
 colorTo: green
 sdk: docker
