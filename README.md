@@ -6,13 +6,14 @@ colorFrom: blue
 colorTo: green
 sdk: docker
 app_port: 7860
+pinned: false
 ---
 
 # Cognitive Load Detection Lab
 
 This repository now includes a complete frontend and backend for a deployable cognitive load detection demo inspired by the original research notebooks in the repo.
 
-## What’s in the app
+## What's in the app
 
 - A FastAPI backend for multimodal cognitive-load scoring
 - A browser-based dashboard for entering EEG, HRV, typing, and mouse interaction signals
