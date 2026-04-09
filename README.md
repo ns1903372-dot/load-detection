@@ -69,6 +69,20 @@ uvicorn app:app --reload
 
 Then open `http://127.0.0.1:8000`.
 
+## Train a baseline model
+
+```bash
+pip install -r requirements.txt
+python train_baseline.py
+```
+
+This trains:
+
+- a `RandomForestClassifier` for `load_band`
+- a `RandomForestRegressor` for `load_score`
+
+using the synthetic dataset in `data/synthetic_cognitive_load_dataset.csv`.
+
 ## Hugging Face deployment
 
 This repo is ready for a Docker Space.
