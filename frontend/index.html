@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cognitive Load Detection Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <section class="hero-card">
+      <div class="hero-copy">
+        <p class="eyebrow">Cognitive Load Detection</p>
+        <h1>Research notebooks, turned into a live multimodal decision dashboard.</h1>
+        <p class="lead">
+          This app combines EEG-style attention signals, physiological stress markers, and behavioral friction to estimate
+          cognitive load in real time. Use the presets or enter your own readings to test the scoring pipeline.
+        </p>
+      </div>
+      <div class="hero-metrics">
+        <div class="hero-pill">
+          <span>API</span>
+          <strong id="health-pill">Checking</strong>
+        </div>
+        <div class="hero-pill">
+          <span>Prediction Band</span>
+          <strong id="band-pill">Waiting</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <section class="panel form-panel">
+        <div class="panel-header">
+          <h2>Scenario Builder</h2>
+          <p>Model classroom, coding, driving, or exam-style workload conditions.</p>
+        </div>
+
+        <div class="preset-row">
+          <button class="ghost-btn" data-preset="baseline">Baseline</button>
+          <button class="ghost-btn" data-preset="coding-crunch">Coding Crunch</button>
+          <button class="ghost-btn" data-preset="exam-overload">Exam Overload</button>
+        </div>
+
+        <form id="predict-form" class="signal-form">
+          <label>
+            Subject ID
+            <input type="text" id="subject_id" value="demo-subject-01" required>
+          </label>
+
+          <label>
+            Context
+            <select id="context">
+              <option value="general">General</option>
+              <option value="coding">Coding</option>
+              <option value="learning">Learning</option>
+              <option value="exam">Exam</option>
+              <option value="driving">Driving</option>
+            </select>
+          </label>
+
+          <div class="form-grid">
+            <label>EEG Focus Index
+              <input type="range" id="eeg_focus_index" min="0" max="100" step="1" value="72">
+              <span data-value-for="eeg_focus_index">72</span>
+            </label>
+            <label>Theta/Beta Ratio
+              <input type="range" id="theta_beta_ratio" min="0.5" max="5" step="0.1" value="1.8">
+              <span data-value-for="theta_beta_ratio">1.8</span>
+            </label>
+            <label>Blink Rate / Min
+              <input type="range" id="blink_rate_per_min" min="0" max="60" step="1" value="14">
+              <span data-value-for="blink_rate_per_min">14</span>
+            </label>
+            <label>HRV RMSSD
+              <input type="range" id="hrv_rmssd" min="5" max="150" step="1" value="58">
+              <span data-value-for="hrv_rmssd">58</span>
+            </label>
+            <label>Typing Speed WPM
+              <input type="range" id="typing_speed_wpm" min="0" max="140" step="1" value="54">
+              <span data-value-for="typing_speed_wpm">54</span>
+            </label>
+            <label>Typing Error Rate
+              <input type="range" id="typing_error_rate" min="0" max="0.5" step="0.01" value="0.06">
+              <span data-value-for="typing_error_rate">0.06</span>
+            </label>
+            <label>Mouse Hesitation Score
+              <input type="range" id="mouse_hesitation_score" min="0" max="100" step="1" value="28">
+              <span data-value-for="mouse_hesitation_score">28</span>
+            </label>
+            <label>Task Switches / Min
+              <input type="range" id="task_switches_per_min" min="0" max="30" step="1" value="6">
+              <span data-value-for="task_switches_per_min">6</span>
+            </label>
+            <label>Session Duration Min
+              <input type="range" id="session_duration_min" min="1" max="240" step="1" value="42">
+              <span data-value-for="session_duration_min">42</span>
+            </label>
+          </div>
+
+          <button type="submit" class="primary-btn" id="predict-btn">Run Prediction</button>
+        </form>
+      </section>
+
+      <section class="panel output-panel">
+        <div class="panel-header">
+          <h2>Live Inference</h2>
+          <p id="status-line">Waiting for your first prediction.</p>
+        </div>
+
+        <div class="score-card" id="score-card">
+          <span>Load Score</span>
+          <strong id="load-score">--</strong>
+          <small id="confidence-score">Confidence --</small>
+        </div>
+
+        <div class="summary-box">
+          <h3>Assessment</h3>
+          <p id="summary-text">Submit a scenario to see the cognitive load narrative.</p>
+        </div>
+
+        <div class="recommendation-box">
+          <h3>Recommended Actions</h3>
+          <ul id="recommendations"></ul>
+        </div>
+
+        <div>
+          <h3>Modality Breakdown</h3>
+          <div id="breakdown-list" class="breakdown-list"></div>
+        </div>
+      </section>
+    </section>
+
+    <section class="panel architecture-panel">
+      <div class="panel-header">
+        <h2>Research Context</h2>
+        <p>The original repository contains preprocessing and EEG notebooks. This app turns that into a deployable product surface.</p>
+      </div>
+      <div class="architecture-grid">
+        <img src="/assets/high_level_architecture_clean.png" alt="Project architecture diagram">
+        <div class="research-notes">
+          <h3>What the backend models</h3>
+          <ul>
+            <li>EEG attention strain from focus index and theta/beta balance.</li>
+            <li>Physiological stress via HRV and ocular fatigue proxies.</li>
+            <li>Behavioral friction via typing accuracy, hesitation, and context switching.</li>
+            <li>Actionable recommendations for real-world monitoring dashboards.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
